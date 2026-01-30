@@ -18,10 +18,12 @@ function UserLogin() {
             password: password
         })
             .then(res => {
-                if (res.data['message']) {
+                if (res.data['success'] === false) {
+                    alert(res.data['message'])
+                } else {
                     sessionStorage.setItem("token", res.data['token']);
                     window.location.replace("/")
-                } 
+                }
             })
     };
 

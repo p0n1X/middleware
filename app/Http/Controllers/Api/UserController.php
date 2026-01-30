@@ -45,7 +45,7 @@ class UserController extends Controller
         } catch (\InvalidArgumentException $exception) {
             return response()->json([
                 'success' => false,
-                'message' => $exception->getMessage()
+                'message' => 'Invalid email or password'
             ]);
         }
     }

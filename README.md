@@ -35,6 +35,9 @@ php artisan serve
 ```
 
 ## Install ReactJS Application and start
+
+Open folder ```frontend/``` and need to create ```.env``` file in the main directory with the data from ```.env.example``` file.
+
 ### 1. Install all addons from ```package.json```
 ```
 npm install

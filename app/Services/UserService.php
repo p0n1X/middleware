@@ -39,14 +39,18 @@ class UserService
      */
     public function login(string $email, string $password): string
     {
-        $user = $this->get_user_by_email($email);
-        if (!$user || !Hash::check($password, $user->password)) {
+        try {
+            $user = $this->get_user_by_email($email);
+            if (!$user || !Hash::check($password, $user->password)) {
+                throw new \InvalidArgumentException();
+            }
+
+            $user->tokens()->delete();
+
+            return $user->createToken('api-token')->plainTextToken;
+        } catch (\TypeError $error) {
             throw new \InvalidArgumentException();
         }
-
-        $user->tokens()->delete();
-
-        return $user->createToken('api-token')->plainTextToken;
     }
 
     /**
